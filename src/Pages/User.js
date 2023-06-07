@@ -33,7 +33,7 @@ const User = () => {
         event.preventDefault();
         if(validateForm()){
             console.log(user, 'user')
-            
+            axios.post('https://sample1-c2acf-default-rtdb.firebaseio.com/register.json',user).then(() => alert('successfully submited'))
         }
     }
 
@@ -101,6 +101,7 @@ const User = () => {
                 <input type='submit' className='btn btn-success' value='Submit' />
             </form>
             <Link className='nav-link' to='/edituser'>EditUser</Link>
+            <Link className='nav-link' to='/list'>List</Link>
         </main>
     </div>
   )
