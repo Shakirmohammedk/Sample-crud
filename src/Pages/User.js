@@ -30,10 +30,12 @@ const User = () => {
     }
    
     const handleSubmit = (event) =>{
+        let myForm = event.target;
         event.preventDefault();
         if(validateForm()){
             console.log(user, 'user')
-            axios.post('https://crudcrud.com/api/ffd18f34cad2483480cfa6ceaabf282b/register',user).then((res) => console.log(res))
+            axios.post('https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register',user).then((res) => console.log(res))
+            myForm.reset();
         }
     }
 

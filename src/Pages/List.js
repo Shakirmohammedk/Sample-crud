@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const List = () => {
     const [data,setData] = useState([])
     useEffect(() =>{
@@ -8,7 +9,7 @@ const List = () => {
 
     const fetchItems = async () => {
         try{
-            const response = await axios.get('https://crudcrud.com/api/ffd18f34cad2483480cfa6ceaabf282b/register')
+            const response = await axios.get('https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register')
             setData(response.data)
             console.log(response.data)
         } catch (err) {
@@ -20,7 +21,7 @@ const List = () => {
         const remainingItems = data.filter((Item) => item.username != Item.username)
         setData(remainingItems)
         try {
-            await axios.delete(`https://crudcrud.com/api/ffd18f34cad2483480cfa6ceaabf282b/register/${item._id}`).then((res) => console.log(res))
+            await axios.delete(`https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register/${item._id}`).then((res) => console.log(res))
             fetchItems();
         } catch (err) {
             console.error(err)
@@ -38,7 +39,8 @@ const List = () => {
                         <th>Qualification</th>
                         <th>Gender</th>
                         <th>Skills</th>
-                        <th>Action</th>
+                        <th>Delete Action</th>
+                        <th>Edit Action</th>
                     </tr>
                 </thead>
                 <tbody className='text-secondary'>
@@ -50,6 +52,7 @@ const List = () => {
                             <td>{item.gender}</td>
                             <td>{item.skills}</td>
                             <td><button type='button' className='btn btn-danger' onClick={() => deleteAction(item)}>Delete</button></td>
+                            <td><button type='button' className='btn btn-danger'><Link className='nav-link' to={`/edituser/${item._id}`}>EditUser</Link></button></td>
                         </tr> )
                     }
                 </tbody>
