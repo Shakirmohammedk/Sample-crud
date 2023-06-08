@@ -3,15 +3,30 @@ import axios from 'axios';
 const List = () => {
     const [data,setData] = useState([])
     useEffect(() =>{
-        axios.get('https://sample1-c2acf-default-rtdb.firebaseio.com/register.json').then((response) => {
-            let data = Object.values(response.data);
-            let list =[];
-            data.map(key => list.push(data))
-            setData(data)
-            console.log(response)
-        })
+        fetchItems();
     },[])
+
+    const fetchItems = async () => {
+        try{
+            const response = await axios.get('https://crudcrud.com/api/ffd18f34cad2483480cfa6ceaabf282b/register')
+            setData(response.data)
+            console.log(response.data)
+        } catch (err) {
+            console.error(err)
+        }
+    };
     console.log(data)
+    const deleteAction = async(item) =>{
+        const remainingItems = data.filter((Item) => item.username != Item.username)
+        setData(remainingItems)
+        try {
+            await axios.delete(`https://crudcrud.com/api/ffd18f34cad2483480cfa6ceaabf282b/register/${item._id}`).then((res) => console.log(res))
+            fetchItems();
+        } catch (err) {
+            console.error(err)
+        }
+
+    }
   return (
     <React.Fragment>
         <main className='container'>
@@ -34,8 +49,7 @@ const List = () => {
                             <td>{item.qualification}</td>
                             <td>{item.gender}</td>
                             <td>{item.skills}</td>
-                            <td><button type='button' className='btn btn-danger'>Delete</button></td>
-                            
+                            <td><button type='button' className='btn btn-danger' onClick={() => deleteAction(item)}>Delete</button></td>
                         </tr> )
                     }
                 </tbody>

@@ -33,7 +33,7 @@ const User = () => {
         event.preventDefault();
         if(validateForm()){
             console.log(user, 'user')
-            axios.post('https://sample1-c2acf-default-rtdb.firebaseio.com/register.json',user).then(() => alert('successfully submited'))
+            axios.post('https://crudcrud.com/api/ffd18f34cad2483480cfa6ceaabf282b/register',user).then((res) => console.log(res))
         }
     }
 
