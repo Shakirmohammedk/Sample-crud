@@ -34,7 +34,7 @@ const User = () => {
         event.preventDefault();
         if(validateForm()){
             console.log(user, 'user')
-            axios.post('https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register',user).then((res) => console.log(res))
+            axios.post('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register',user).then((res) => console.log(res))
             myForm.reset();
         }
     }

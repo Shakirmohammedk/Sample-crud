@@ -9,7 +9,7 @@ const List = () => {
 
     const fetchItems = async () => {
         try{
-            const response = await axios.get('https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register')
+            const response = await axios.get('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register')
             setData(response.data)
             console.log(response.data)
         } catch (err) {
@@ -21,7 +21,7 @@ const List = () => {
         const remainingItems = data.filter((Item) => item.username != Item.username)
         setData(remainingItems)
         try {
-            await axios.delete(`https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register/${item._id}`).then((res) => console.log(res))
+            await axios.delete(`https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register/${item._id}`).then((res) => console.log(res))
             fetchItems();
         } catch (err) {
             console.error(err)

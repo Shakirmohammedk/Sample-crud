@@ -9,7 +9,7 @@ const EditUser = () => {
   const [editUser,setEditUser] = useState(initialState);
   // console.log(id)
   useEffect(() =>{
-    axios.get('https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register/' +id).then((res)=>{
+    axios.get('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register/' +id).then((res)=>{
       setEditUser({
         ...editUser,
         username:res.data.username,
@@ -46,7 +46,7 @@ const EditUser = () => {
   const navigate = useNavigate()
   const submitEdit = (event) =>{
     event.preventDefault();
-    axios.put('https://crudcrud.com/api/22372a98ccad47f69a6ae63369391a28/register/'+id,editUser).then((res) =>{
+    axios.put('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register/'+id,editUser).then((res) =>{
       navigate('/list')
     })
   }
