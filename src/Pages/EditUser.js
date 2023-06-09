@@ -9,7 +9,7 @@ const EditUser = () => {
   const [editUser,setEditUser] = useState(initialState);
   // console.log(id)
   useEffect(() =>{
-    axios.get('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register/' +id).then((res)=>{
+    axios.get('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register/' +id).then((res)=>{
       setEditUser({
         ...editUser,
         username:res.data.username,
@@ -46,7 +46,7 @@ const EditUser = () => {
   const navigate = useNavigate()
   const submitEdit = (event) =>{
     event.preventDefault();
-    axios.put('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register/'+id,editUser).then((res) =>{
+    axios.put('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register/'+id,editUser).then((res) =>{
       navigate('/list')
     })
   }
@@ -92,6 +92,7 @@ const EditUser = () => {
               className="form-check-input mx-1"
               value="Male"
               onChange={handleEdit}
+              checked = {editUser.gender === 'Male' ? true : false}
             />
             Male
           </label>
@@ -102,6 +103,7 @@ const EditUser = () => {
               className="form-check-input mx-1"
               value="Female"
              onChange={handleEdit}
+             checked = {editUser.gender === 'Female' ? true : false}
             />
             Female
           </label>
@@ -116,6 +118,7 @@ const EditUser = () => {
               className="form-check-input mx-1"
               defaultValue="HTML"
              onChange={handleEdit}
+             checked = {editUser.skills.indexOf('HTML') === -1 ? false : true}
             />
             HTML
           </label>
@@ -126,6 +129,7 @@ const EditUser = () => {
               className="form-check-input mx-1"
               defaultValue='CSS'
               onChange={handleEdit}
+              checked = {editUser.skills.indexOf('CSS') === -1 ? false : true}
             />
             CSS
           </label>
@@ -136,6 +140,7 @@ const EditUser = () => {
               className="form-check-input mx-1"
               defaultValue='React JS'
               onChange={handleEdit}
+              checked = {editUser.skills.indexOf('React JS') === -1 ? false : true}
             />
             React JS
           </label>
@@ -146,6 +151,7 @@ const EditUser = () => {
               name="skills"
               defaultValue="Angular"
               onChange={handleEdit}
+              checked = {editUser.skills.indexOf('Angular') === -1 ? false : true}
             />
             Angular
           </label>

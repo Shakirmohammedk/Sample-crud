@@ -9,7 +9,7 @@ const List = () => {
 
     const fetchItems = async () => {
         try{
-            const response = await axios.get('https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register')
+            const response = await axios.get('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register')
             setData(response.data)
             console.log(response.data)
         } catch (err) {
@@ -21,7 +21,7 @@ const List = () => {
         const remainingItems = data.filter((Item) => item.username != Item.username)
         setData(remainingItems)
         try {
-            await axios.delete(`https://crudcrud.com/api/0e5faa0e5e4841a8a05cf68b45009799/register/${item._id}`).then((res) => console.log(res))
+            await axios.delete(`https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register/${item._id}`).then((res) => console.log(res))
             fetchItems();
         } catch (err) {
             console.error(err)
@@ -50,7 +50,7 @@ const List = () => {
                             <td>{item.username}</td>
                             <td>{item.qualification}</td>
                             <td>{item.gender}</td>
-                            <td>{item.skills}</td>
+                            <td>{item.skills.join(', ')}</td>
                             <td><button type='button' className='btn btn-danger' onClick={() => deleteAction(item)}>Delete</button></td>
                             <td><button type='button' className='btn btn-danger'><Link className='nav-link' to={`/edituser/${item._id}`}>EditUser</Link></button></td>
                         </tr> )
