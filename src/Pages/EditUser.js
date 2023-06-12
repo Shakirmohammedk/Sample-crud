@@ -1,15 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
+import { URL } from "../Urls/urls";
 
 const EditUser = () => {
   const location = useLocation();
+  //const url = location.state
   const {id} = useParams();
   const initialState = {username:'',qualification:'',gender:'',skills:[]}
   const [editUser,setEditUser] = useState(initialState);
   // console.log(id)
+  //console.log(url)
   useEffect(() =>{
-    axios.get('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register/' +id).then((res)=>{
+    axios.get(`${URL}${id}`).then((res)=>{
       setEditUser({
         ...editUser,
         username:res.data.username,
@@ -43,12 +46,17 @@ const EditUser = () => {
       })
     }
   }
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const submitEdit = (event) =>{
     event.preventDefault();
-    axios.put('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register/'+id,editUser).then((res) =>{
+    axios.put(`${URL}${id}`,editUser).then((res) =>{
+      
+      //console.log(editUser)
+      console.log(res)
       navigate('/list')
+      
     })
+    
   }
   return (
     <div>

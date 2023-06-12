@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { URL } from '../Urls/urls'
 const User = () => {
+    //console.log(URL)
+    // const url = 'https://crudcrud.com/api/1e03fa07769245e1aed8994187212655/register/'
     const initialState = {username:'',qualification:'',gender:'',skills:[]}
     const [user, setUser] = useState(initialState);
     const [error, setErrors] =useState({})
@@ -34,7 +36,7 @@ const User = () => {
         event.preventDefault();
         if(validateForm()){
             console.log(user, 'user')
-            axios.post('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register',user).then((res) => console.log(res))
+            axios.post(URL,user).then((res) => console.log(res))
             myForm.reset();
         }
     }
@@ -102,7 +104,7 @@ const User = () => {
                 </div>
                 <input type='submit' className='btn btn-success' value='Submit' />
             </form>
-            <Link className='nav-link' to='/edituser'>EditUser</Link>
+            
             <Link className='nav-link' to='/list'>List</Link>
         </main>
     </div>

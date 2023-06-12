@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { URL } from '../Urls/urls';
 const List = () => {
+    //const url = 'https://crudcrud.com/api/1e03fa07769245e1aed8994187212655/register/'
+    const location = useLocation();
+    // const url = location.state
     const [data,setData] = useState([])
     useEffect(() =>{
         fetchItems();
@@ -9,8 +13,10 @@ const List = () => {
 
     const fetchItems = async () => {
         try{
-            const response = await axios.get('https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register')
+            const response = await axios.get(URL)
+            console.log(response)
             setData(response.data)
+           // console.log(url)
             console.log(response.data)
         } catch (err) {
             console.error(err)
@@ -21,7 +27,7 @@ const List = () => {
         const remainingItems = data.filter((Item) => item.username != Item.username)
         setData(remainingItems)
         try {
-            await axios.delete(`https://crudcrud.com/api/acc9d02683f74e4c9842cde02d302cde/register/${item._id}`).then((res) => console.log(res))
+            await axios.delete(`URL${item._id}`).then((res) => console.log(res))
             fetchItems();
         } catch (err) {
             console.error(err)
@@ -52,11 +58,12 @@ const List = () => {
                             <td>{item.gender}</td>
                             <td>{item.skills.join(', ')}</td>
                             <td><button type='button' className='btn btn-danger' onClick={() => deleteAction(item)}>Delete</button></td>
-                            <td><button type='button' className='btn btn-danger'><Link className='nav-link' to={`/edituser/${item._id}`}>EditUser</Link></button></td>
+                            <td><button type='button' className='btn btn-danger'><Link className='nav-link' to={`/edituser/${item._id}`} >EditUser</Link></button></td>
                         </tr> )
                     }
                 </tbody>
             </table>
+            <button className='btn btn-success'><Link className='nav-link' to='/'>Add User</Link></button>
         </main>
     </React.Fragment>
   )
